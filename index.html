@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>ระบบเบิกวัสดุออนไลน์ คณะวารสารศาสตร์และสื่อสารมวลชน</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://quota.jc.tu.ac.th/images/jc_logo.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        :root {
+            /* 🟢 2. ตั้งค่าสีหลัก (Primary) ให้เป็นสีม่วง #743d88 ตาม main.html */
+            --primary-color: #743d88; 
+            --secondary-color: #f3e5f5; /* สีม่วงอ่อนสำหรับพื้นหลังกล่องข้อความ */
+            --btn-color: #743d88; 
+            --btn-hover: #5a2d6b; /* สีตอนเอาเมาส์ชี้ (เข้มขึ้น) */
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            /* ใช้ Font Noto Sans Thai */
+            font-family: 'Noto Sans Thai', sans-serif;
+            background-color: #f8f9fa; /* สีพื้นหลังเดียวกับ main.html */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ตกแต่งพื้นหลังด้วยวงกลม (ปรับเป็นโทนม่วง) */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4; /* ลดความเข้มลงนิดหน่อย */
+        }
+        /* ปรับสีวงกลมให้เข้าธีม */
+        .shape-1 { width: 300px; height: 300px; background: #ce93d8; top: -50px; right: -50px; }
+        .shape-2 { width: 200px; height: 200px; background: #e1bee7; bottom: -50px; left: -50px; }
+        
+        /* กล่องคอนเทนเนอร์หลัก */
+        .main-card {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+            position: relative;
+            margin: auto;
+        }
+
+        .logo-img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        /* หัวข้อ */
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 700; /* หนาขึ้นตามสไตล์ main */
+            line-height: 1.3;
+        }
+        
+        h2 {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        /* กล่องข้อความแจ้งเตือน */
+        .info-box {
+            background-color: var(--secondary-color);
+            color: #4a148c; /* สีข้อความเข้ม */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            display: inline-block;
+            box-shadow: none;
+            border: 1px solid #e1bee7;
+        }
+
+        /* ปุ่มกด */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--btn-color);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(116, 61, 136, 0.4); /* เงาสีม่วง */
+            border: 2px solid transparent;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(90, 45, 107, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(1px);
+        }
+
+        .arrow-icon {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .main-card { padding: 30px 20px; width: 90%; }
+            .cta-button { font-size: 1rem; padding: 12px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <div class="main-card">
+        <img src="https://quota.jc.tu.ac.th/images/jc_logo.png" alt="JC Logo" class="logo-img">
+        
+        <h1>ระบบเบิกวัสดุออนไลน์</h1>
+        <h2>คณะวารสารศาสตร์และสื่อสารมวลชน<br>มหาวิทยาลัยธรรมศาสตร์</h2>
+
+        <div class="info-box">
+            <i class="fas fa-info-circle"></i> กรุณาล็อกอินเพื่อเริ่มทำรายการเบิก
+        </div>
+
+        <br>
+
+        <a id="login-btn" href="#" class="cta-button">
+            CLICK HERE 
+            <span style="font-size: 0.8em; margin-left: 5px; font-weight: 300;">| คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
+            <span class="arrow-icon">➔</span>
+        </a>
+    </div>
+
+    <script>
+        // Function to detect if the user is on an iOS device
+        function isIOS() {
+            return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is using Facebook's in-app browser
+        function isFacebookApp() {
+            return /FBAN|FBAV/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is using LINE's in-app browser
+        function isLineApp() {
+            return /Line/i.test(navigator.userAgent);
+        }
+
+        function setButtonLink() {
+            var btn = document.getElementById('login-btn');
+            
+            // ⚠️ สำคัญ: ใส่ Link Web App ของ "ระบบเบิกวัสดุ" ตรงนี้
+            // (ลิงก์เดิมในไฟล์เก่าเป็นของระบบนับครุภัณฑ์ อย่าลืมเปลี่ยนนะครับ)
+            var targetUrl = 'https://script.google.com/macros/s/AKfycbz...YOUR_SCRIPT_ID.../exec'; 
+            
+            if (isIOS() && (isFacebookApp() || isLineApp())) {
+                btn.href = 'x-safari-' + targetUrl;
+            } else {
+                btn.href = targetUrl;
+            }
+        }
+
+        document.getElementById('login-btn').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            
+            var targetUrl = this.href; 
+
+            // แสดง SweetAlert Loading (ธีมสีม่วง)
+            Swal.fire({
+                title: 'กำลังเข้าสู่ระบบ',
+                text: 'กรุณารอสักครู่...',
+                allowOutsideClick: false, 
+                allowEscapeKey: false,
+                color: '#743d88', // 🟢 ปรับสี Text เป็นม่วง
+                didOpen: () => {
+                    Swal.showLoading(); 
+                }
+            });
+
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        });
+
+        window.addEventListener('pageshow', function(event) {
+            Swal.close(); 
+        });
+
+        setButtonLink();
+    </script>
+</body>
+</html>
