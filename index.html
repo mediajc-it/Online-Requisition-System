@@ -141,6 +141,46 @@
             .main-card { padding: 30px 20px; width: 90%; }
             .cta-button { font-size: 1rem; padding: 12px 30px; }
         }
+        /* --- 🟢 ส่วนที่ 2: เพิ่มใหม่!! มือถือแนวนอน (Landscape) --- */
+        /* ทำงานเมื่อความสูงหน้าจอน้อยกว่า 500px (เช่น iPhone แนวนอน) */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            body {
+                align-items: flex-start; /* เปลี่ยนจากกลาง เป็นเริ่มจากบน เพื่อให้ Scroll ได้ */
+                padding: 20px 0; /* เว้นขอบบน-ล่าง */
+            }
+
+            .main-card {
+                padding: 20px; /* ลด Padding ในกล่อง */
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .logo-img {
+                width: 70px; /* ย่อโลโก้ */
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 1.3rem; /* ย่อหัวข้อ */
+                margin-bottom: 5px;
+            }
+
+            h2 {
+                font-size: 0.9rem; /* ย่อหัวข้อรอง */
+                margin-bottom: 15px;
+            }
+
+            .info-box {
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 10px 30px; /* ลดขนาดปุ่ม */
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
